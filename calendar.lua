@@ -51,7 +51,7 @@ function calendar:init(args)
     -- Date equality check is based on day_id. We deliberately ignore the year
     -- to highlight the same day in different years:
     self.day_id     = args.day_id     or '%m-%d'
-    self.empty_sep  = args.empty_sep  or "   -"
+    self.empty_sep  = args.empty_sep  or "    -"
     self.week_col   = args.week_col   or " %V"
     self.days_style = args.days_style or {}
     return self
@@ -75,7 +75,7 @@ function calendar:page(month, year)
     local page_title = format_date(self.page_title, tA)
 
     -- print column titles (weekday)
-    local page = "    "
+    local page = "     "
     for d = 0, 6 do
         page = page .. self:day_style(d+1):format(format_date(self.col_title, {
             year  = d0.year,
@@ -100,9 +100,9 @@ function calendar:page(month, year)
             page = page .. "\n" .. format_date(self.week_col, {year=year, month=month, day=day})
         end
         if today == format_date(self.day_id, {day=day, month=month, year=year}) then
-            page = page .. "  " .. self.today:format(day)
+            page = page .. "   " .. self.today:format(day)
         else
-            page = page .. "  " .. self:day_style(column+1):format(self.anyday:format(day))
+            page = page .. "   " .. self:day_style(column+1):format(self.anyday:format(day))
         end
         column = column + 1
     end
